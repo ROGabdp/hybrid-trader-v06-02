@@ -460,7 +460,7 @@ def calculate_regime_status(df: pd.DataFrame, lookback: int = 3) -> dict:
 
 
 def v5_inference(workspace: dict, df: pd.DataFrame, open_positions: list = None, current_price: float = None,
-                 sell_threshold: float = 0.5, buy_consensus_threshold: float = 0.8) -> dict:
+                 sell_threshold: float = 0.6, buy_consensus_threshold: float = 0.5) -> dict:
     """
     V5 策略推論 (動態濾網)
     
@@ -880,8 +880,8 @@ def main():
         default=None,
         help='回測起始日期 (YYYY-MM-DD 或 YYYYMMDD 格式)'
     )
-    parser.add_argument('--sell-threshold', type=float, default=0.5, help='Confidence threshold for sell signals')
-    parser.add_argument('--buy-consensus-threshold', type=float, default=0.8, help='Buy confidence threshold to veto sell signals')
+    parser.add_argument('--sell-threshold', type=float, default=0.6, help='Confidence threshold for sell signals')
+    parser.add_argument('--buy-consensus-threshold', type=float, default=0.5, help='Buy confidence threshold to veto sell signals')
     args = parser.parse_args()
     
     now = datetime.now()

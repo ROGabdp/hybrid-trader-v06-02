@@ -2,7 +2,6 @@
 
 這是一個先進的演算法交易系統，結合了用於價格預測的 **LSTM-SSAM** (Long Short-Term Memory with Sequential Self-Attention) 以及用於交易決策的 **Pro Trader RL** (Reinforcement Learning)。
 
-
 # hybrid-trader-v06-02 是以 hybrid-trader-v06 作為基礎來修改的
 
 # v06-02 重點
@@ -28,6 +27,22 @@
     這次的訓練是成功的。
     1. 驗證了 Gap Validation：Agent 在沒有看過的市場片段 (2017-2023) 中表現穩健，沒有過擬合。
     2. 證實了 Remove Class Balancing：讓 Agent 直接面對真實數據分佈是正確的，它學會了「寧可錯過平庸機會，只抓極端好機會」的生存策略。
+
+3. 透過調整協作參數，在保持抗跌能力的同時，改善牛市表現以超越 "Buy and Hold" 策略。
+
+    最佳參數組合
+    建議將策略參數調整為：
+    1. Sell Threshold: 0.6 (原 0.5) —— 提高賣出難度，避免過早離場。
+    2. Buy Consensus Threshold: 0.5 (原 0.8) —— 增強 Buy Agent 的話語權，充當趨勢濾網。
+    
+    策略特性總結:
+    1. 抗跌是核心優勢: 本策略最大價值在於避開如 2020 疫情與 2022 熊市的深幅下跌。
+    2. 牛市仍需優化: 單純調整閾值雖有幫助，但未能完全解決「賣飛後不敢買回」的問題。這可能需要針對 Buy Agent 的獎勵機制做進一步訓練 (如: 錯過漲幅的懲罰)。
+
+
+
+
+
 
 # hybrid-trader-v06 是以 hybrid-trader-v03-04-03-test2-no120-x2-buy120 作為基礎來修改的
 

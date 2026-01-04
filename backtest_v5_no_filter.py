@@ -72,8 +72,8 @@ def parse_args():
         default=DEFAULT_END_DATE,
         help='回測結束日期 (YYYY-MM-DD 格式，預設: 最新資料)'
     )
-    parser.add_argument('--sell-threshold', type=float, default=0.5, help='Confidence threshold for sell signals')
-    parser.add_argument('--buy-consensus-threshold', type=float, default=0.8, help='Buy confidence threshold to veto sell signals')
+    parser.add_argument('--sell-threshold', type=float, default=0.6, help='Confidence threshold for sell signals')
+    parser.add_argument('--buy-consensus-threshold', type=float, default=0.5, help='Buy confidence threshold to veto sell signals')
     return parser.parse_args()
 
 
@@ -85,7 +85,7 @@ class V5Backtester:
     V5 回測器：無濾網限制
     """
     def __init__(self, buy_model, sell_model, initial_capital=1_000_000, 
-                 sell_threshold=0.5, buy_consensus_threshold=0.8):
+                 sell_threshold=0.6, buy_consensus_threshold=0.5):
         self.buy_model = buy_model
         self.sell_model = sell_model
         self.initial_capital = initial_capital

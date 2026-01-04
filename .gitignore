@@ -57,4 +57,5 @@ Thumbs.db
 # Large Directories
 models_hybrid_v5
 data
-
+01 改變日期切分，並取消buy agent 驗證的類別平衡
+02 預設值改為 Sell Threshold  0_6 Buy Consensus Threshold 0_5

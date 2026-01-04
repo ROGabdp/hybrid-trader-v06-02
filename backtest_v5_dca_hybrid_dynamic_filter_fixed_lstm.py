@@ -78,8 +78,8 @@ def parse_args():
     )
     parser.add_argument('--start', type=str, default=DEFAULT_START_DATE)
     parser.add_argument('--end', type=str, default=DEFAULT_END_DATE)
-    parser.add_argument('--sell-threshold', type=float, default=0.5, help='Confidence threshold for sell signals')
-    parser.add_argument('--buy-consensus-threshold', type=float, default=0.8, help='Buy confidence threshold to veto sell signals')
+    parser.add_argument('--sell-threshold', type=float, default=0.6, help='Confidence threshold for sell signals')
+    parser.add_argument('--buy-consensus-threshold', type=float, default=0.5, help='Buy confidence threshold to veto sell signals')
     return parser.parse_args()
 
 
@@ -109,7 +109,7 @@ class LeveragedSharedPoolBacktester:
     
     def __init__(self, buy_model, sell_model, yearly_capital=600_000,
                  dca_amount=50_000, ai_chunk_amount=50_000,
-                 sell_threshold=0.5, buy_consensus_threshold=0.8):
+                 sell_threshold=0.6, buy_consensus_threshold=0.5):
         self.buy_model = buy_model
         self.sell_model = sell_model
         self.yearly_capital = yearly_capital
@@ -514,7 +514,7 @@ class LeveragedSharedPoolBacktester:
 class SharedPoolBacktester:
     def __init__(self, buy_model, sell_model, yearly_capital=600_000, 
                  dca_amount=50_000, ai_chunk_amount=50_000,
-                 sell_threshold=0.5, buy_consensus_threshold=0.8):
+                 sell_threshold=0.6, buy_consensus_threshold=0.5):
         self.buy_model = buy_model
         self.sell_model = sell_model
         self.yearly_capital = yearly_capital
