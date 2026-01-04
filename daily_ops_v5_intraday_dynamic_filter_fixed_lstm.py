@@ -579,7 +579,8 @@ def v5_inference(workspace: dict, df: pd.DataFrame, open_positions: list = None,
                     veto_reason = ""
                     
                     if is_sell_signal and not triggered_stop_loss:
-                        if buy_prob > buy_consensus_threshold:
+                        # 🔥 只有當 Buy Agent 真心想買 (Action=1) 且信心夠高時，才否決賣出
+                        if ai_action == 'BUY' and buy_prob > buy_consensus_threshold:
                             is_consensus_hold = True
                             veto_reason = f"🚫 Consensus Veto (Buy Conf {buy_prob:.1%} > {buy_consensus_threshold})"
                             print(f"    -> Sell Signal Vetoed! {veto_reason}")

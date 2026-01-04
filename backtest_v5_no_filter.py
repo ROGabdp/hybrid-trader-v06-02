@@ -165,7 +165,8 @@ class V5Backtester:
                 # Consensus Veto
                 is_vetoed = False
                 if is_sell_signal and not stop_loss:
-                    if current_buy_conf > self.buy_consensus_threshold:
+                    # 🔥 只有當 Buy Agent 真心想買 (Action=1) 且信心夠高時，才否決賣出
+                    if buy_action_check[0] == 1 and current_buy_conf > self.buy_consensus_threshold:
                         is_vetoed = True
                         # print(f"  🛑 [{date.strftime('%Y-%m-%d')}] Sell Vetoed! SellConf:{sell_confidence:.2f} BuyProb:{current_buy_conf:.2f}")
 

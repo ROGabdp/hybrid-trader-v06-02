@@ -337,7 +337,8 @@ class LeveragedSharedPoolBacktester:
                 # 共識檢查
                 is_consensus_hold = False
                 if is_sell_signal and not is_stop_loss:
-                    if current_buy_conf > self.buy_consensus_threshold:
+                    # 🔥 只有當 Buy Agent 真心想買 (Action=1) 且信心夠高時，才否決賣出
+                    if buy_action_pred[0] == 1 and current_buy_conf > self.buy_consensus_threshold:
                         is_consensus_hold = True
 
                 if (is_sell_signal and not is_consensus_hold) or is_stop_loss:
@@ -686,7 +687,8 @@ class SharedPoolBacktester:
                 # 共識檢查
                 is_consensus_hold = False
                 if is_sell_signal and not is_stop_loss:
-                    if current_buy_conf > self.buy_consensus_threshold:
+                    # 🔥 只有當 Buy Agent 真心想買 (Action=1) 且信心夠高時，才否決賣出
+                    if buy_action_pred[0] == 1 and current_buy_conf > self.buy_consensus_threshold:
                         is_consensus_hold = True
 
                 if (is_sell_signal and not is_consensus_hold) or is_stop_loss:
